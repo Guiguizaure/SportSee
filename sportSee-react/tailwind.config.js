@@ -18,6 +18,9 @@ export default {
         main: "352px 1fr",
         three_one: "3fr 320px",
       },
+      boxShadow: {
+        'scorechart': '0px 2px 4px 0px rgba(0, 0, 0, 0.02)',
+      }
     },
     container: {
       padding: {
