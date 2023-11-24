@@ -1,0 +1,23 @@
+.user_page{
+    h1.title{
+        margin-bottom: 41px;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 50% */
+        color: black;
+
+        span.first-name{
+           @apply text-red;
+        }
+    }
+
+    p.subtitle{
+        margin-bottom: 71px;
+        color: #000;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 133.333% */
+    }
+}

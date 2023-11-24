@@ -1,0 +1,44 @@
+.sidebar{
+    display: flex;
+    justify-content: center;
+    width: 117px;
+    padding-top: 270px;
+    height: 100vh;
+    background: black;
+
+    @include breakpoint(1157px){
+        width: 100%;
+        padding: 15px;
+        height: 100%;
+        background-color: white;
+    }
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include breakpoint(1157px){
+            flex-direction: row;
+            align-items: center;
+        }
+
+        li {
+            @include breakpoint(1157px){
+                padding: 2px;
+                background: black;
+                border-radius: 8px;
+            }
+            
+            a{
+                
+                
+                img{
+                    @include breakpoint(1157px){
+                       width: 50px;
+                    }
+                }
+            } 
+        } 
+    }
+}

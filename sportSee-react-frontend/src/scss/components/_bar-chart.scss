@@ -1,9 +1,16 @@
 .bar_chart{
-    background: grey;
-    position: relative;
-    width: 820px; /* Same as SVG width */
-    height: 320px; /* Same as totalHeight */
-    // height: 145px;
+    &__wrapper{
+        background: grey;
+        position: relative;
+        width: 835px; /* Same as SVG width */
+        height: 320px; /* Same as totalHeight */
+        // height: 145px;
+    
+        @include breakpoint(1024px){
+            width: 620px;
+        }
+    }
+    
 
     .bar{
         width: 20px;

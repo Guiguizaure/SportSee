@@ -5,9 +5,9 @@ import exerciseIcon from "../../assets/exercise.svg";
 
 const Sidebar = () => {
   return (
-    <aside className="sidebar flex items-center justify-center bg-black w-[117px] h-screen">
+    <aside className="sidebar">
       <nav>
-        <ul className="flex flex-col gap-[20px]">
+        <ul className="">
           <li>
             <a href="#">
               <img className="logo" src={meditationIcon} alt="" />

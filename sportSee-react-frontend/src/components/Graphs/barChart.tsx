@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -6,64 +7,147 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  // CartesianGrid,
+  ReferenceLine,
+  TooltipProps,
 } from "recharts";
 
-// Assuming this is your Session type structure
 interface Session {
   kilogram: number;
   calories: number;
 }
 
+interface CustomTickProps {
+  x: number;
+  y: number;
+  payload: {
+    value: string | number;
+  };
+}
+
+interface CustomTooltipProps extends TooltipProps<number, string> {}
+
 const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
-  // Prepare the data for Recharts
   const data = sessions.map((session, index) => ({
-    day: index + 1, // Assuming day is simply the index + 1
+    day: index + 1,
     Kilogram: session.kilogram,
     Calories: session.calories,
   }));
 
+  const kgValues = sessions.map((s) => s.kilogram);
+  const calValues = sessions.map((s) => s.calories);
+  const minKg = Math.min(...kgValues) - 5;
+  const maxKg = Math.max(...kgValues) + 5;
+  const minCal = Math.min(...calValues) - 50;
+  const maxCal = Math.max(...calValues) + 50;
+  const middleKg = (minKg + maxKg) / 2;
+
+  const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          className="custom-tooltip flex flex-col text-white"
+          style={{
+            backgroundColor: "#FF0101",
+          }}
+        >
+          <p className="label text-[7px] font-[500] p-[10px]">{`${payload[0].value}kg`}</p>
+          <p className="label text-[7px] font-[500] p-[10px]">{`${payload[1].value}kcal`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const CustomTick: React.FC<CustomTickProps> = ({ x, y, payload }) => {
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text x={-3} y={0} dy={16} fill="#9B9EAC" fontSize={14}>
+          {payload.value}
+        </text>
+      </g>
+    );
+  };
+
+  const renderCustomLegend = () => {
+    return (
+      <ul className="absolute flex gap-[32px] right-[26px] top-[-24px]">
+        <li className="flex gap-[12px] justify-center items-center">
+          <svg height="8" width="8">
+            <circle cx="4" cy="4" r="4" fill="#282D30" />
+          </svg>
+          <span className="text-grey text-[14px]">Poids (kg)</span>
+        </li>
+        <li className="flex gap-[12px] justify-center items-center">
+          <svg height="8" width="8">
+            <circle cx="4" cy="4" r="4" fill="#FF0101" />
+          </svg>
+          <span className="text-grey text-[14px]">Calories brûlées (kCal)</span>
+        </li>
+      </ul>
+    );
+  };
+
   return (
-    <div
-      className="bg-light-grey rounded-[5px] p-[24px_0px_40px_12px]"
-      style={{ width: "835px", height: "320px" }}
-    >
-      <h3 className="chart-title ml-[20px] mb-[35px]">Activité quotidienne</h3>
+    <div className="bar_chart__wrapper bg-light-grey rounded-[5px] p-[24px_0px_40px_12px]">
+      <h3 className="chart-title ml-[20px] mb-[35px] text-blue-grey text-[15px] font-[500px]">
+        Activité quotidienne
+      </h3>
       <ResponsiveContainer width="100%" height={220}>
         <BarChart
           data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           barCategoryGap={0}
-          barGap={6}
+          barGap={10}
         >
-          {/* <CartesianGrid strokeDasharray="5 3" /> */}
           <XAxis
             dataKey="day"
             tickLine={false}
             axisLine={false}
-            tickMargin={15}
+            tickMargin={10}
+            padding={{ left: -45, right: -45 }}
+            tick={<CustomTick />}
           />
           <YAxis
             yAxisId="kg"
             orientation="right"
-            domain={[70, 90]}
-            ticks={[70, 80, 90]}
+            domain={[minKg, maxKg]}
+            ticks={[minKg, middleKg, maxKg]}
+            tick={<CustomTick />}
             tickLine={false}
             axisLine={false}
-            tickMargin={30}
+            tickMargin={34}
           />
           <YAxis
             yAxisId="cal"
             orientation="right"
-            domain={[100, 500]}
+            domain={[minCal, maxCal]}
             hide={true}
           />
-          {/* <CartesianGrid vertical={true} strokeDasharray="5 3" /> */}
-          <Tooltip />
+          <Tooltip
+            content={<CustomTooltip />}
+            cursor={{ fill: "rgba(196, 196, 196, 0.5)" }}
+          />
           <Legend
-            verticalAlign="top"
-            align="right"
-            wrapperStyle={{ top: 0, right: 0 }}
+            content={renderCustomLegend}
+            wrapperStyle={{ top: -30, right: 0 }}
+          />
+          <ReferenceLine
+            y={minKg}
+            stroke="#DEDEDE"
+            strokeDasharray="1"
+            yAxisId="kg"
+          />
+          <ReferenceLine
+            y={middleKg}
+            stroke="#DEDEDE"
+            strokeDasharray="3 3"
+            yAxisId="kg"
+          />
+          <ReferenceLine
+            y={maxKg}
+            stroke="#DEDEDE"
+            strokeDasharray="3 3"
+            yAxisId="kg"
           />
           <Bar
             yAxisId="kg"

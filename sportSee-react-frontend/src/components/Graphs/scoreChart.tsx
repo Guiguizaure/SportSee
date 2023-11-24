@@ -18,7 +18,7 @@ const ScoreChart: React.FC<ScoreChartProps> = ({ userData }) => {
   const data = [{ name: "Score", score, fill: "#FF0000" }];
 
   return (
-    <div className="score-chart-container bg-light-grey rounded-[5px] w-full max-w-[258px] min-h-[263px] p-4 relative">
+    <div className="score-chart-container bg-light-grey rounded-[5px] w-full max-w-[258px] h-[263px] p-4 relative">
       <h3 className="text-[15px] mt-[8px] ml-[12px] text-blue-grey font-[500]">
         Score
       </h3>

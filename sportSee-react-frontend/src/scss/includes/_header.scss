@@ -1,10 +1,18 @@
 
-
-nav{
-    a.active{
-        color: grey;
+header{
+    nav{
+        transition: 400ms ease-in-out;
+        a{
+            @include breakpoint(1024px){
+                font-size: 20px;
+            }
+        }
+        a.active{
+            color: grey;
+        }
     }
 }
+
 
 // .logo{
 //     display: block;

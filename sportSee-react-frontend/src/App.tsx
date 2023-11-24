@@ -10,7 +10,7 @@ function App() {
       <Header />
       <section className="main-wrapper flex w-full">
         <Sidebar />
-        <main className="min-w-[780px] w-full pt-[68px] pl-[109px]">
+        <main className="min-w-[780px] w-full">
           <Routes>
             <Route path="/profil" element={<ProfilePage />} />
             <Route path="/user/:id" element={<UserDetailPage />} />

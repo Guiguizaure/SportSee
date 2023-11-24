@@ -54,7 +54,7 @@ const AverageSessionsChart: React.FC<AverageSessionsChartProps> = ({
   //   }));
 
   return (
-    <div className="average-sessions-chart relative flex flex-grow items-end bg-red rounded-[5px] max-w-[256px] min-h-[263px]">
+    <div className="average-sessions-chart relative flex items-end bg-red rounded-[5px] max-w-[256px] w-[256px] h-[263px]">
       <h3 className="text-white font-[500] opacity-[0.5] absolute top-[29px] left-[34px] max-w-[147px]">
         Durée moyenne des sessions
       </h3>

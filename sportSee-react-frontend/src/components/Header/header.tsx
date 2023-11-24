@@ -8,7 +8,7 @@ const Header = () => {
         <div className="logo-wrapper ml-[29px]">
           <img className="logo" src={logo} alt="" />
         </div>
-        <nav className="flex gap-[203px] text-[24px] font-medium leading-6 text-white last:mr-[87px]">
+        <nav className="flex gap-[30px] xl:gap-[203px] text-[24px] font-medium leading-6 text-white last:mr-[35px] lg:last:mr-[87px]">
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "active" : "")}

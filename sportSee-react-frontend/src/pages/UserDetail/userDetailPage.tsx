@@ -49,15 +49,17 @@ const UserDetailPage: React.FC = () => {
 
   return (
     <div className="user_page">
-      <h1>
+      <h1 className="title">
         Bonjour <span className="first-name">{user.userInfos.firstName}</span>
       </h1>
-      <p>Félicitation! Vous avez explosé vos objectifs hier</p>
+      <p className="subtitle">
+        Félicitation! Vous avez explosé vos objectifs hier
+      </p>
 
-      <div className="user_info flex gap-[31px]">
-        <div className="user_info_left flex flex-col gap-[30px]">
+      <div className="user_info flex gap-[31px] flex-col-reverse xl:flex-row">
+        <div className="user_info_left flex flex-col gap-[30px] xl:items-start items-center">
           {userActivity && <D3BarChart sessions={userActivity.sessions} />}
-          <div className="user_info_left--bottom flex  gap-[30px] h-[250px]">
+          <div className="user_info_left--bottom flex lg:flex-nowrap flex-wrap gap-[30px] h-[250px]">
             {userAverageSessions && (
               <AverageSessionsChart averageSessionsData={userAverageSessions} />
             )}
@@ -65,7 +67,7 @@ const UserDetailPage: React.FC = () => {
             {user && <ScoreChart userData={user} />}
           </div>
         </div>
-        <div className="user_info_right flex flex-col gap-y-[39px]">
+        <div className="user_info_right grid grid-cols-2 xl:grid-cols-1 gap-x-[30px] gap-y-[39px]">
           <KeyData
             dataIcon={caloriesIcon}
             dataNumber={user.keyData.calorieCount + "kCal"}
@@ -73,17 +75,17 @@ const UserDetailPage: React.FC = () => {
           />
           <KeyData
             dataIcon={proteinIcon}
-            dataNumber={user.keyData.calorieCount + "g"}
+            dataNumber={user.keyData.proteinCount + "g"}
             dataType="Proteines"
           />
           <KeyData
             dataIcon={glucidesIcon}
-            dataNumber={user.keyData.calorieCount + "g"}
+            dataNumber={user.keyData.carbohydrateCount + "g"}
             dataType="Glucides"
           />
           <KeyData
             dataIcon={lipidesIcon}
-            dataNumber={user.keyData.calorieCount + "g"}
+            dataNumber={user.keyData.lipidCount + "g"}
             dataType="Lipides"
           />
         </div>
