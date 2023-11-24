@@ -1,0 +1,3 @@
+[submodule "sportSee-react-frontend/sportSee-react-backend"]
+	path = sportSee-react-frontend/sportSee-react-backend
+	url = https://github.com/Guiguizaure/P9-front-end-dashboard.git
