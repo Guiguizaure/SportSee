@@ -1,4 +1,4 @@
-// types.ts
+// types.tsx
 
 // USER MAIN
 export interface UserMainData {
