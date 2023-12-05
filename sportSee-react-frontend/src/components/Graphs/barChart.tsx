@@ -16,14 +16,6 @@ interface Session {
   calories: number;
 }
 
-interface CustomTickProps {
-  x: number;
-  y: number;
-  payload: {
-    value: string | number;
-  };
-}
-
 interface CustomTooltipProps extends TooltipProps<number, string> {}
 
 const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
@@ -74,25 +66,27 @@ const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
     return null;
   };
 
-  const CustomXTick: React.FC<CustomTickProps> = ({ x, y, payload }) => {
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <text x={-3} y={0} dy={16} fill="#9B9EAC" fontSize={14}>
-          {payload.value}
-        </text>
-      </g>
-    );
-  };
+  // const CustomXTick = (props: CustomTickProps) => {
+  //   const { x, y, payload } = props;
+  //   return (
+  //     <g transform={`translate(${x},${y})`}>
+  //       <text x={-3} y={0} dy={16} fill="#9B9EAC" fontSize={14}>
+  //         {payload.value}
+  //       </text>
+  //     </g>
+  //   );
+  // };
 
-  const CustomYTick: React.FC<CustomTickProps> = ({ x, y, payload }) => {
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={3} fill="#9B9EAC" fontSize={14}>
-          {payload.value}
-        </text>
-      </g>
-    );
-  };
+  // const CustomYTick = (props: CustomTickProps) => {
+  //   const { x, y, payload } = props;
+  //   return (
+  //     <g transform={`translate(${x},${y})`}>
+  //       <text x={0} y={0} dy={3} fill="#9B9EAC" fontSize={14}>
+  //         {payload.value}
+  //       </text>
+  //     </g>
+  //   );
+  // };
 
   const renderCustomLegend = () => {
     return (
@@ -131,14 +125,40 @@ const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
             axisLine={false}
             tickMargin={10}
             padding={xAxisPadding}
-            tick={<CustomXTick />}
+            tick={({ x, y, payload }) => (
+              <g transform={`translate(${x},${y})`}>
+                <text
+                  x={0}
+                  y={0}
+                  dy={16}
+                  fill="#9B9EAC"
+                  fontSize={14}
+                  textAnchor="middle"
+                >
+                  {payload.value}
+                </text>
+              </g>
+            )}
           />
           <YAxis
             yAxisId="kg"
             orientation="right"
             domain={[minKg, maxKg]}
             ticks={[minKg, middleKg, maxKg]}
-            tick={<CustomYTick />}
+            tick={({ x, y, payload }) => (
+              <g transform={`translate(${x},${y})`}>
+                <text
+                  x={0}
+                  y={0}
+                  dy={3}
+                  fill="#9B9EAC"
+                  fontSize={14}
+                  textAnchor="middle"
+                >
+                  {payload.value}
+                </text>
+              </g>
+            )}
             tickLine={false}
             axisLine={false}
             tickMargin={34}
