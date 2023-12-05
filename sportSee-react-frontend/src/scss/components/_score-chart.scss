@@ -1,5 +1,24 @@
 .score-chart-container{
+    max-width: 258px;
+    width: 258px;
+    height: 263px;
+    padding: 16px;
+
+    @include breakpoint(1400px){
+        height: 197px;
+        padding: 0;
+    }
     .recharts-responsive-container{
         margin-top: -27px;
+    }
+
+    .central-circle{
+        width: 150px;
+        height: 150px;
+
+        @include breakpoint(1400px){
+            width: 124px;
+            height: 124px;
+        }
     }
 }

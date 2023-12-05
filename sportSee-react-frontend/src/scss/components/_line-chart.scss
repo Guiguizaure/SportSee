@@ -1,0 +1,17 @@
+.average-sessions-chart{
+    max-width: 256px;
+    width: 256px;
+    height: 263px;
+
+    @include breakpoint(1400px){
+        height: 197px;
+    }
+
+    .line-chart{
+        height: 180px !important;
+
+        @include breakpoint(1400px){
+            height: 140px !important;
+        }
+    }
+}

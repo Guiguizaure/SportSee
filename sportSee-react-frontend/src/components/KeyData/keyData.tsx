@@ -11,7 +11,7 @@ const KeyData: React.FC<KeyDataProps> = ({
   dataType,
 }) => {
   return (
-    <div className="key-data flex items-center gap-[24px] min-w-[258px] p-[32px] bg-light-grey rounded-[5px]">
+    <div className="key-data flex items-center bg-light-grey rounded-[5px]">
       <img className="data-icon" src={dataIcon} alt="Data Icon" />
       <div className="key-data-text flex flex-col gap-[2px]">
         <div className="data-number text-blue-grey text-[20px] font-bold leading-[24px]">

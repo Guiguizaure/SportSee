@@ -9,7 +9,11 @@ import {
   USER_AVERAGE_SESSIONS,
 } from "../../data/userMainData.json";
 //types
-import { UserPerformance, UserAverageSessions } from "../../data/types";
+import {
+  UserPerformance,
+  UserAverageSessions,
+  UserActivity,
+} from "../../data/types";
 //Components
 import AverageSessionsChart from "../../components/Graphs/averageSessionsChart";
 import ScoreChart from "../../components/Graphs/scoreChart";
@@ -59,7 +63,7 @@ const UserDetailPage: React.FC = () => {
 
   // Replace direct data references with userData
   const userActivity = USER_ACTIVITY.find(
-    (activity) => activity.userId === userData.id
+    (activity: UserActivity) => activity.userId === userData.id
   );
   const userPerformance = USER_PERFORMANCE.find(
     (performance: UserPerformance) => performance.userId === userData.id
@@ -78,8 +82,8 @@ const UserDetailPage: React.FC = () => {
         Félicitation! Vous avez explosé vos objectifs hier
       </p>
 
-      <div className="user_info flex gap-[31px] flex-col-reverse xl:flex-row">
-        <div className="user_info_left flex flex-col gap-[30px] xl:items-start items-center">
+      <div className="user_info flex gap-[31px] flex-row">
+        <div className="user_info_left flex flex-col gap-[30px] items-start">
           {userActivity && <D3BarChart sessions={userActivity.sessions} />}
           <div className="user_info_left--bottom flex lg:flex-nowrap flex-wrap gap-[30px] h-[250px]">
             {userAverageSessions && (
@@ -89,7 +93,7 @@ const UserDetailPage: React.FC = () => {
             {userData && <ScoreChart userData={userData} />}
           </div>
         </div>
-        <div className="user_info_right grid grid-cols-2 xl:grid-cols-1 gap-x-[30px] gap-y-[39px]">
+        <div className="user_info_right flex flex-col">
           <KeyData
             dataIcon={caloriesIcon}
             dataNumber={userData.keyData.calorieCount + "kCal"}

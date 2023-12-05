@@ -54,11 +54,11 @@ const AverageSessionsChart: React.FC<AverageSessionsChartProps> = ({
   //   }));
 
   return (
-    <div className="average-sessions-chart relative flex items-end bg-red rounded-[5px] max-w-[256px] w-[256px] h-[263px]">
-      <h3 className="text-white font-[500] opacity-[0.5] absolute top-[29px] left-[34px] max-w-[147px]">
+    <div className="average-sessions-chart relative flex items-end bg-red rounded-[5px] flex-1">
+      <h3 className="text-white text-[13px] xl:text-[16px] font-[500] opacity-[0.5] absolute top-[14px] left-[18px] xl:top-[29px] xl:left-[34px] max-w-[147px]">
         Durée moyenne des sessions
       </h3>
-      <ResponsiveContainer width="100%" height={180} className="pb-[12px]">
+      <ResponsiveContainer width="100%" className="line-chart pb-[12px]">
         <LineChart
           data={extendedData}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -41,6 +41,22 @@ const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
   const maxCal = Math.max(...calValues) + 50;
   const middleKg = (minKg + maxKg) / 2;
 
+  const [xAxisPadding, setXAxisPadding] = useState({ left: -45, right: -45 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1400) {
+        setXAxisPadding({ left: -28, right: -28 });
+      } else {
+        setXAxisPadding({ left: -45, right: -45 });
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -58,10 +74,20 @@ const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
     return null;
   };
 
-  const CustomTick: React.FC<CustomTickProps> = ({ x, y, payload }) => {
+  const CustomXTick: React.FC<CustomTickProps> = ({ x, y, payload }) => {
     return (
       <g transform={`translate(${x},${y})`}>
         <text x={-3} y={0} dy={16} fill="#9B9EAC" fontSize={14}>
+          {payload.value}
+        </text>
+      </g>
+    );
+  };
+
+  const CustomYTick: React.FC<CustomTickProps> = ({ x, y, payload }) => {
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text x={0} y={0} dy={3} fill="#9B9EAC" fontSize={14}>
           {payload.value}
         </text>
       </g>
@@ -104,15 +130,15 @@ const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
             tickLine={false}
             axisLine={false}
             tickMargin={10}
-            padding={{ left: -45, right: -45 }}
-            tick={<CustomTick />}
+            padding={xAxisPadding}
+            tick={<CustomXTick />}
           />
           <YAxis
             yAxisId="kg"
             orientation="right"
             domain={[minKg, maxKg]}
             ticks={[minKg, middleKg, maxKg]}
-            tick={<CustomTick />}
+            tick={<CustomYTick />}
             tickLine={false}
             axisLine={false}
             tickMargin={34}

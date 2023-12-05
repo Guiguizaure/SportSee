@@ -29,10 +29,10 @@ const CustomRadarChart: React.FC<RadarChartProps> = ({ userData }) => {
 
   return (
     <RadarChart
-      className="radar-chart max-w-[258px] min-h-[263px] bg-dark-grey rounded-[5px]"
+      className="radar-chart flex-1 bg-dark-grey rounded-[5px]"
       outerRadius={90}
       width={258} // Width of the actual RadarChart
-      height={250} // Height of the actual RadarChart
+      height={197} // Height of the actual RadarChart
       data={chartData}
       margin={{ top: 0, right: 215, bottom: 0, left: 0 }}
     >

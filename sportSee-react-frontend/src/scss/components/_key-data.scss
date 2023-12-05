@@ -1,3 +1,30 @@
-// .key-data{
-//     display: flex;
-// }
+.key-data{
+    min-width: 258px;
+    padding: 32px;
+    gap: 24px;
+
+    @include breakpoint(1400px){
+       min-width: 185px;
+       padding: 0 15px;
+       gap: 15px;
+       max-height: 90px;
+       height: 100%;
+    }
+
+    .data-icon{
+        @include breakpoint(1400px){
+            width: 45px;
+        }
+    }
+
+    .data-number{
+        @include breakpoint(1400px){
+            font-size: 16px;
+        }
+    }
+    .data-type{
+        @include breakpoint(1400px){
+            font-size: 12px;
+        }
+    }
+}

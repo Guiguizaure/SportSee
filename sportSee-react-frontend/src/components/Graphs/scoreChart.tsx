@@ -18,7 +18,7 @@ const ScoreChart: React.FC<ScoreChartProps> = ({ userData }) => {
   const data = [{ name: "Score", score, fill: "#FF0000" }];
 
   return (
-    <div className="score-chart-container bg-light-grey rounded-[5px] w-full max-w-[258px] h-[263px] p-4 relative">
+    <div className="score-chart-container bg-light-grey rounded-[5px] w-full flex-1 relative">
       <h3 className="text-[15px] mt-[8px] ml-[12px] text-blue-grey font-[500]">
         Score
       </h3>
@@ -43,12 +43,12 @@ const ScoreChart: React.FC<ScoreChartProps> = ({ userData }) => {
           </RadialBar>
         </RadialBarChart>
       </ResponsiveContainer>
-      <div className="central-circle bg-white shadow-scorechart absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full"></div>
+      <div className="central-circle bg-white shadow-scorechart absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full"></div>
       <div className="score-label flex flex-col items-center max-w-[94px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <p className="text-[26px] text-dark-grey font-bold">{`${displayScore.toFixed(
+        <p className="xl:text-[26px] text-[22px] text-dark-grey font-bold">{`${displayScore.toFixed(
           0
         )}%`}</p>
-        <p className="text-[16px] text-center font-[500] text-grey">
+        <p className="xl:text-[16px] text-[14px] text-center font-[500] text-grey">
           de votre objectif
         </p>
       </div>

@@ -31,6 +31,9 @@ export const DataSourceProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [dataSource, setDataSource] = useState<"mocked" | "api">("mocked");
   const [userData, setUserData] = useState<UserMainData | null>(null);
+  const [activeButton, setActiveButton] = useState<"mocked" | "api" | null>(
+    null
+  );
 
   const fetchUserData = async (userId: number) => {
     if (dataSource === "api") {
@@ -50,10 +53,6 @@ export const DataSourceProvider: React.FC<{ children: ReactNode }> = ({
       setUserData(user ?? null); // Set to null if user is not found
     }
   };
-
-  const [activeButton, setActiveButton] = useState<"mocked" | "api" | null>(
-    null
-  );
 
   return (
     <DataSourceContext.Provider

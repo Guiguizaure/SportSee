@@ -1,5 +1,15 @@
 .radar-chart{
     background: black;
+    max-width: 256px;
+    width: 258px;
+    min-height: 263px;
+    // height: 205px;
+
+    @include breakpoint(1400px){
+        min-height: 197px;
+        height: 197px;
+    }
+
     .recharts-polar-grid-angle{
         line{
             display: none;
