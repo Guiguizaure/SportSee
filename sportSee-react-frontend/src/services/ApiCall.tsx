@@ -14,7 +14,7 @@ import {
 } from "../data/types";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/user",
+  baseURL: "http://localghost:3000/user",
 });
 
 // Fetch User Info
@@ -102,6 +102,7 @@ export const fetchAllUsersIndividually = async (): Promise<
         console.log(`User ID ${userId} not found, skipping.`);
       } else {
         console.error(`Error fetching data for user ID ${userId}:`, axiosError);
+        throw error;
       }
     }
   }

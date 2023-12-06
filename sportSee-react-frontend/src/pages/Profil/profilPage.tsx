@@ -8,14 +8,20 @@ import { fetchAllUsersIndividually } from "../../services/ApiCall";
 const ProfilePage: React.FC = () => {
   const { dataSource, fetchUserData } = useDataSource();
   const [users, setUsers] = useState<UserMainData[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUsers = async () => {
-      if (dataSource === "mocked") {
-        setUsers(USER_MAIN_DATA);
-      } else {
-        const apiUsers = await fetchAllUsersIndividually();
-        setUsers(apiUsers);
+      setError(null); // Reset error state on each load
+      try {
+        if (dataSource === "mocked") {
+          setUsers(USER_MAIN_DATA);
+        } else {
+          const apiUsers = await fetchAllUsersIndividually();
+          setUsers(apiUsers);
+        }
+      } catch (e) {
+        setError("Failed to fetch user data."); // Set error message
       }
     };
 
@@ -25,6 +31,9 @@ const ProfilePage: React.FC = () => {
   return (
     <div className="profil_page">
       <h1 className="text-5xl mb-10">Users</h1>
+      {error && (
+        <div className="error-message text-[20px] text-[red]">{error}</div>
+      )}
       <ul className="flex gap-10">
         {users.map((user) => (
           <Link
