@@ -10,9 +10,10 @@ const ProfilePage: React.FC = () => {
   const [users, setUsers] = useState<UserMainData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  // We show the list of users based on which data source we selected in Control Page
   useEffect(() => {
     const loadUsers = async () => {
-      setError(null); // Reset error state on each load
+      setError(null);
       try {
         if (dataSource === "mocked") {
           setUsers(USER_MAIN_DATA);
@@ -21,7 +22,7 @@ const ProfilePage: React.FC = () => {
           setUsers(apiUsers);
         }
       } catch (e) {
-        setError("Failed to fetch user data."); // Set error message
+        setError("Failed to fetch user data.");
       }
     };
 

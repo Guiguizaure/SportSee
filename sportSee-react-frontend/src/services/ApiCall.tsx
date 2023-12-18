@@ -14,7 +14,7 @@ import {
 } from "../data/types";
 
 const api = axios.create({
-  baseURL: "http://localghost:3000/user",
+  baseURL: "http://localhost:3000/user",
 });
 
 // Fetch User Info

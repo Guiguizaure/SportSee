@@ -66,28 +66,6 @@ const CustomBarChart = ({ sessions }: { sessions: Session[] }) => {
     return null;
   };
 
-  // const CustomXTick = (props: CustomTickProps) => {
-  //   const { x, y, payload } = props;
-  //   return (
-  //     <g transform={`translate(${x},${y})`}>
-  //       <text x={-3} y={0} dy={16} fill="#9B9EAC" fontSize={14}>
-  //         {payload.value}
-  //       </text>
-  //     </g>
-  //   );
-  // };
-
-  // const CustomYTick = (props: CustomTickProps) => {
-  //   const { x, y, payload } = props;
-  //   return (
-  //     <g transform={`translate(${x},${y})`}>
-  //       <text x={0} y={0} dy={3} fill="#9B9EAC" fontSize={14}>
-  //         {payload.value}
-  //       </text>
-  //     </g>
-  //   );
-  // };
-
   const renderCustomLegend = () => {
     return (
       <ul className="absolute flex gap-[32px] right-[26px] top-[-24px]">
